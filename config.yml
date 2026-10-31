@@ -1,0 +1,120 @@
+# CoreSmp config. Run /core reload after editing.
+max-homes: 3
+teleport-warmup-seconds: 3
+home-cooldown-seconds: 5
+spawn-cooldown-seconds: 5
+warp-cooldown-seconds: 5
+tpa-cooldown-seconds: 10
+tpa-timeout-seconds: 60
+back-cooldown-seconds: 30
+rtp:
+  cooldown-seconds: 300
+  min-radius: 500
+  max-radius: 5000
+  center-x: 0
+  center-z: 0
+  attempts: 6
+autosave-seconds: 300
+
+welcome-messages:
+  - "§6Welcome to CoreSmp, §f%player%§6!"
+  - "§7Type §f/core help §7for everything the server offers."
+
+deathban:
+  enabled: true
+  minutes: 30
+  # Names that are never deathbanned (players with permission coresmp.deathban.exempt are exempt too)
+  exempt: []
+
+# Names that can still chat while chat is disabled (ops/admins can always chat)
+chat-exempt: []
+
+army:
+  max-soldiers: 10
+
+anti-cheat:
+  enabled: true
+  max-avg-speed-per-tick: 0.9
+  hover-ticks: 50
+  max-reach: 6.0
+  max-cps: 22
+  kick-at-violations: 12
+
+unstable:
+  enabled: true
+  interval-minutes: 20
+  # %player% = UUID of the chosen player (works in selectors), %name% = their name
+  events:
+    - announce: "§5⚡ The sky is unstable! Lightning strikes around §f%name%§5!"
+      commands:
+        - "execute at %player% run summon minecraft:lightning_bolt ~4 ~ ~4"
+        - "execute at %player% run summon minecraft:lightning_bolt ~-4 ~ ~-4"
+    - announce: "§bGravity warps! Everyone floats for a moment..."
+      commands:
+        - "effect give @a minecraft:levitation 5 0"
+        - "effect give @a minecraft:slow_falling 40 0"
+    - announce: "§aSupply drop for §f%name%§a!"
+      commands:
+        - "give %player% minecraft:diamond 3"
+        - "give %player% minecraft:golden_apple 2"
+    - announce: "§cA horde spawns near §f%name%§c!"
+      commands:
+        - "execute at %player% run summon minecraft:zombie ~3 ~ ~3"
+        - "execute at %player% run summon minecraft:zombie ~-3 ~ ~3"
+        - "execute at %player% run summon minecraft:zombie ~3 ~ ~-3"
+        - "execute at %player% run summon minecraft:skeleton ~-3 ~ ~-3"
+    - announce: "§eSpeed storm! Everyone is fast for 60 seconds."
+      commands:
+        - "effect give @a minecraft:speed 60 2"
+
+daily:
+  cooldown-hours: 20
+  commands:
+    - "give %player% minecraft:cooked_beef 8"
+    - "give %player% minecraft:iron_ingot 4"
+  # extra reward on every 7th day of a streak
+  bonus-commands:
+    - "give %player% minecraft:diamond 5"
+
+duel:
+  request-timeout-seconds: 60
+  countdown-seconds: 5
+  max-seconds: 300
+  # NPC spectators watching the duel (0 = off, max 60)
+  crowd-size: 24
+  crowd-radius: 11
+  crowd-names: [Notch, jeb_, Dinnerbone, Grumm, Steve, Alex]
+
+# Quests are done in order. Finishing one gives soldier slots, revive tokens and optional commands.
+# type: KILL_MOBS, MINE_BLOCKS or PLAY_MINUTES
+quests:
+  - name: Monster Hunter
+    type: KILL_MOBS
+    amount: 25
+    soldiers: 1
+    revives: 0
+    commands: ["give %player% minecraft:bread 16"]
+  - name: Deep Miner
+    type: MINE_BLOCKS
+    amount: 300
+    soldiers: 1
+    revives: 0
+    commands: ["give %player% minecraft:iron_ingot 16"]
+  - name: Survivor
+    type: PLAY_MINUTES
+    amount: 60
+    soldiers: 1
+    revives: 1
+    commands: ["give %player% minecraft:golden_apple 3"]
+  - name: Slayer
+    type: KILL_MOBS
+    amount: 150
+    soldiers: 2
+    revives: 0
+    commands: ["give %player% minecraft:diamond 4"]
+  - name: Excavator
+    type: MINE_BLOCKS
+    amount: 1500
+    soldiers: 2
+    revives: 0
+    commands: ["give %player% minecraft:diamond 8"]

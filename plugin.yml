@@ -1,0 +1,47 @@
+name: CoreSmp
+version: '${version}'
+main: net.coresmp.CorePlugin
+api-version: '1.21'
+description: All-in-one SMP plugin - kits, quests, soldier armies, deathban, anti-cheat, duels and more.
+commands:
+  core:
+    description: CoreSmp main command
+    usage: /core help
+  spawn:
+    description: Teleport to spawn
+  setspawn:
+    description: Set spawn
+  home:
+    description: Teleport to a home
+  sethome:
+    description: Set a home
+  delhome:
+    description: Delete a home
+  homes:
+    description: List homes
+  warp:
+    description: Teleport to a warp
+  warps:
+    description: List warps
+  setwarp:
+    description: Create a warp
+  delwarp:
+    description: Delete a warp
+  tpa:
+    description: Request to teleport to a player
+  tpaccept:
+    description: Accept a teleport request
+  tpdeny:
+    description: Deny a teleport request
+  rtp:
+    description: Random teleport
+permissions:
+  coresmp.admin:
+    description: Use CoreSmp admin commands
+    default: op
+  coresmp.deathban.exempt:
+    description: Never deathbanned
+    default: false
+  coresmp.ac.bypass:
+    description: Ignored by the anti-cheat
+    default: false
